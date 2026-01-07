@@ -1,0 +1,85 @@
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
+    color: #000;
+    /* Font che richiama l'estetica YZY */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+/* Navbar minimale */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: #000;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+/* Griglia Yeezy */
+.grid-container {
+    display: grid;
+    /* Crea colonne che si adattano allo schermo */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2px; /* Spazio minimo tra gli elementi per un look "brutalista" */
+    padding-top: 60px; /* Spazio per la navbar */
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0f0f0; /* Opzionale: sottile divisione */
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.grid-item:hover {
+    opacity: 0.7;
+}
+
+/* Placeholder per le immagini */
+.image-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Immagini quadrate perfette */
+    background-color: #ebebeb; /* Grigio tipico Yeezy */
+    background-position: center;
+    background-size: cover;
+}
+
+/* Info Prodotto */
+.item-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    font-size: 14px;
+}
+
+/* Responsive per Mobile */
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Singola colonna su mobile */
+    }
+    
+    .logo {
+        font-size: 18px;
+    }
+}

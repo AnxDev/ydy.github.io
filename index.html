@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galleria Lightbox con Transizione</title>
+<style>
+body {
+  background-color: white;
+  font-family: monospace;
+  color:white;
+}
+a {
+  text-decoration-line: none;
+  text-align: center;
+  color: white;
+}
+h3{
+  font-size: 2rem;
+}
+header {
+  position: relative;           /* serve per posizionare il bottone */
+  display: flex;
+  justify-content: center;      /* centra l’H1 orizzontalmente */
+  align-items: center;          /* centra verticalmente */
+  padding: 1rem;
+}
+
+/* Bottone a sinistra */
+.vinyl_btn {
+  
+   display: block;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+.vinyl_btn img {
+  width: 50%;
+  height: 50%;
+
+  transform: rotate(0deg);
+  transition: transform is linear;
+}
+.vinyl_btn img.rotate {
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+/* Titolo centrato */
+h1 {
+  margin: 0;
+  font-size: 3rem;
+  line-height: 1;
+  text-align: center;
+  
+  color: white;
+}
+.gallery {
+    display: grid;
+    /* La regola '1fr' garantisce che gli elementi occupino lo spazio in modo uniforme. */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 3fr));
+    gap: 2rem; /* Ridotto il gap per gli schermi più piccoli */
+    max-width: 3600px; /* Aggiunto 'px' per una regola CSS valida */
+    margin: 1rem auto;
+    padding: 0 1rem; /* Ridotto il padding laterale per schermi piccoli */
+}
+
+.gallery img {
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.gallery img:hover {
+    transform: scale(1.10);
+}
+/* Lightbox overlay */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.749);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.lightbox img.lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
+    transform: scale(0.8);
+    
+}
+
+/* Quando il lightbox è attivo */
+.lightbox:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox:target img.lightbox-img {
+    transform: scale(1);
+}
+
+/* Freccie di navigazione */
+.lightbox button.btn-left {
+    position: absolute;
+    left: 5%; /* Valore fisso per evitare che si attacchi al bordo */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1010; /* Assicura che sia sopra l'immagine */
+    
+}
+.lightbox button.btn-right {
+    position: absolute;
+    right: 5%; /* Valore fisso per evitare che si attacchi al bordo */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1010; /* Assicura che sia sopra l'immagine */
+}
+
+.lightbox button img {
+    width: 40px; /* Dimensioni ridotte per schermi piccoli */
+    height: 40px;
+    object-fit: contain;
+    
+}
+
+/* --- Media Query per dispositivi più piccoli --- */
+@media (max-width: 822px) {
+    .gallery {
+        /* Aumenta il gap su schermi più piccoli per una migliore spaziatura */
+        gap: 1rem;
+        
+    }
+
+    /* Rimuovi l'hover su dispositivi touch per evitare problemi */
+
+
+    /* Regola la posizione delle frecce sui dispositivi mobili */
+    .lightbox button.btn-left,
+    .lightbox button.btn-right {
+        /* Aumenta la dimensione del bottone per il touch */
+        width: 50px;
+        height: 50px;
+        top: 90%; /* Sposta le frecce in basso per non coprire l'immagine */
+    }
+    
+    .lightbox button.btn-left {
+        left: 20%;
+    }
+    .lightbox button.btn-right {
+        right: 20%;
+    }
+    h1{
+      font-size: 2.5rem;
+    }
+}
+@media (max-width: 689px) {
+    h1{
+      font-size: 2rem;
+    }
+}
+@media (max-width: 587px) {
+    h1{
+      font-size: 1.8rem;
+    }
+    .vinyl_btn img {
+      width: 50px;
+      height: 50px;
+    }
+}
+@media (max-width: 467px) {
+    h1{
+      font-size: 1.6rem;
+    }
+    .vinyl_btn img {
+      width: 45px;
+      height: 45px;
+    }
+}
+@media (max-width: 429px) {
+    h1{
+      font-size: 1.4rem;
+    }
+    .vinyl_btn img {
+      width: 2rem;
+      height: 2rem;
+    }
+}
+@media (max-width: 409px) {
+    h1{
+      font-size: 1.2rem;
+    }
+
+}
+</style>
+</head>
+<body>
+<script>
+  if (localStorage.getItem("auth") !== "true") {
+    window.location.href = "login.html";
+  }
+</script>
+<audio id="bg-music" loop>
+    <source src="LOVE ME.wav" type="audio/mpeg">
+    Il tuo browser non supporta l'audio.
+  </audio>
+    <button class="vinyl_btn" onclick="play()">
+      <img src="JL.png" alt="vinyl" id="record" />
+    </button>
+
+  <script>
+    let playing = false;
+
+    function play() {
+      let record = document.getElementById('record');
+
+      if (!playing) {
+        record.className = 'rotate';
+        playing = true;
+        document.getElementById("bg-music").play();
+      } else {
+        record.className = '';
+        playing = false;
+        document.getElementById("bg-music").pause();
+      }
+    }
+  </script>
+
+<div class="gallery">
+
+</div>
+
+<!-- Lightbox hidden images -->
+<div id="img1" class="lightbox">
+</div>
+
+
+</body>
+</html>
