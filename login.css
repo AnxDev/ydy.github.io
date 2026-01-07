@@ -7,76 +7,74 @@
 
 /* BODY */
 body {
-  min-height: 100svh; /* migliore di 100vh su mobile */
+  min-height: 100svh;
   background: #000;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 1.2rem;
 }
 
-/* CONTAINER */
+/* LOGIN = SCHERMATA */
 .login {
+  min-height: 100svh;
+  width: 100%;
+  padding: 3rem 1.5rem;
+
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* riempie in verticale */
   align-items: center;
-  gap: 1.5rem;
-  width: 100%;
-  max-width: 900px; /* desktop largo */
   text-align: center;
 }
 
-/* IMAGE */
+/* IMMAGINE */
 .login img {
-  width: 70%;
-  max-width: 320px;
+  width: 85%;
+  max-width: 420px;
   height: auto;
 }
 
-/* TEXT */
+/* TESTI */
 .login h3 {
-  font-size: clamp(0.9rem, 3vw, 1.1rem);
-  letter-spacing: 2px;
+  font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+  letter-spacing: 3px;
   text-transform: uppercase;
+  margin-top: 2rem;
 }
 
 .login h4 {
-  font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+  font-size: clamp(0.9rem, 3.5vw, 1.2rem);
   opacity: 0.6;
+  margin-top: 0.5rem;
 }
 
-/* INPUT */
+/* BLOCCO INPUT */
 .login input {
   width: 100%;
-  max-width: 600px;
+  font-size: 1.3rem;
+  padding: 1rem;
   background: transparent;
   border: none;
-  border-bottom: 1px solid #fff;
+  border-bottom: 2px solid #fff;
   color: #fff;
-  font-size: 1.1rem;
-  padding: 0.8rem;
   text-align: center;
   outline: none;
 }
 
-/* BUTTON */
+/* BOTTONE */
 .login button {
   width: 100%;
-  max-width: 600px;
+  font-size: 1.1rem;
+  padding: 1.2rem;
   background: none;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   color: #fff;
-  padding: 0.8rem;
-  font-size: 0.9rem;
-  letter-spacing: 4px;
+  letter-spacing: 5px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease;
+  margin-bottom: 1rem;
 }
 
-.login button:hover {
+.login button:active {
   background: #fff;
   color: #000;
 }
