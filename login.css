@@ -7,14 +7,14 @@
 
 /* BODY */
 body {
-  min-height: 100vh;
+  min-height: 100svh; /* migliore di 100vh su mobile */
   background: #000;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem; /* spazio su mobile */
+  padding: 2rem 1.2rem;
 }
 
 /* CONTAINER */
@@ -22,58 +22,55 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.5rem;
   width: 100%;
-  max-width: 400px; /* limite desktop */
+  max-width: 900px; /* desktop largo */
   text-align: center;
 }
 
 /* IMAGE */
 .login img {
-  width: 60%;
-  max-width: 180px;
+  width: 70%;
+  max-width: 320px;
   height: auto;
 }
 
 /* TEXT */
 .login h3 {
-  font-size: 0.9rem;
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .login h4 {
-  font-size: 0.75rem;
+  font-size: clamp(0.75rem, 2.5vw, 0.9rem);
   opacity: 0.6;
 }
 
 /* INPUT */
 .login input {
   width: 100%;
+  max-width: 600px;
   background: transparent;
   border: none;
   border-bottom: 1px solid #fff;
   color: #fff;
-  font-size: 1rem;
-  padding: 0.6rem;
+  font-size: 1.1rem;
+  padding: 0.8rem;
   text-align: center;
   outline: none;
-}
-
-.login input::placeholder {
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 2px;
 }
 
 /* BUTTON */
 .login button {
   width: 100%;
+  max-width: 600px;
   background: none;
   border: 1px solid #fff;
   color: #fff;
-  padding: 0.6rem;
-  font-size: 0.8rem;
-  letter-spacing: 3px;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -82,19 +79,4 @@ body {
 .login button:hover {
   background: #fff;
   color: #000;
-}
-
-/* 📱 MOBILE EXTRA (schermi piccoli) */
-@media (max-width: 480px) {
-  .login img {
-    width: 70%;
-  }
-
-  .login h3 {
-    font-size: 0.8rem;
-  }
-
-  .login h4 {
-    font-size: 0.7rem;
-  }
 }
