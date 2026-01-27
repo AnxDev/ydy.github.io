@@ -1,85 +1,204 @@
-/* Reset e Base */
-* {
+body {
+    background-color: #f7eee1;
+    display: grid; /* Added: place-items requires display: grid or flex */
+    place-items: center;
+    min-height: 100vh;
     margin: 0;
-    padding: 0;
+    font-family: monospace;
+    padding: 20px; /* Added: prevents content from touching screen edges */
     box-sizing: border-box;
 }
 
-body {
-    background-color: #fff;
-    color: #000;
-    /* Font che richiama l'estetica YZY */
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
+hr {
+    border: none;
+    height: 2px;
+    background-color: #000000;
+    margin: 15px auto;
+    width: 80%; /* Increased for better mobile visibility */
+    max-width: 1000px; /* Caps the width on desktop */
+}
+
+/* Fluid Typography using clamp(min, preferred, max) */
+.title span {
+    display: flex;
+    font-size: clamp(1.5rem, 8vw, 3rem);
+}
+
+.sub-title span {
+    display: flex;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+}
+
+.countdown-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows blocks to drop to next line if screen is tiny */
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
     text-transform: uppercase;
+}
+
+.time-block span {
+    display: block;
+    font-size: clamp(1.5rem, 6vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.time-block label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #666;
+}
+
+.album-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Reduced gap from 40px to 15px for a tighter feel */
+    gap: 15px; 
+    padding: 10px 5%;
+    width: 100%;
+    max-width: 900px; /* Prevents the section from spreading too far on wide screens */
+    margin: 0 auto;   /* Centers the container */
+}
+
+.album-cover-side {
+    border: 1px solid black;
+    /* Fixed width works better for proximity than a tiny percentage */
+    width: 250px; 
+    height: auto;
+    object-fit: cover;
+    flex-shrink: 0; /* Prevents the image from getting squished */
+}
+
+.album-text {
+    text-align: left;
+    color: #000000;
+    font-family: monospace;
+    /* Remove 'flex: 1' to keep the text container only as wide as its content */
+    flex: 0 1 auto; 
+}
+
+.album-text h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    letter-spacing: 2px;
+    margin: 0; /* Ensures no extra spacing pushes it away */
     line-height: 1;
-    letter-spacing: -0.02em;
 }
 
-/* Navbar minimale */
-.navbar {
+.album-text p {
+    font-size: 1.2rem;
+    margin: 5px 0 0 0; /* Small top margin to separate from H2 */
+    text-align: left; /* Aligned with the header for proximity */
+}
+.tracklist {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.track {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.navbar nav a {
-    text-decoration: none;
-    color: #000;
-    margin-left: 20px;
-    font-size: 14px;
-}
-
-/* Griglia Yeezy */
-.grid-container {
-    display: grid;
-    /* Crea colonne che si adattano allo schermo */
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2px; /* Spazio minimo tra gli elementi per un look "brutalista" */
-    padding-top: 60px; /* Spazio per la navbar */
-}
-
-.grid-item {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #f0f0f0; /* Opzionale: sottile divisione */
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
     cursor: pointer;
-    transition: opacity 0.3s ease;
+    font-size: 13px;
+    transition: opacity 0.2s;
 }
 
-.grid-item:hover {
-    opacity: 0.7;
+.track:hover {
+    opacity: 0.5;
 }
 
-/* Placeholder per le immagini */
-.image-placeholder {
+/* Player Fisso Inferiore */
+.player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    aspect-ratio: 1 / 1; /* Immagini quadrate perfette */
-    background-color: #ebebeb; /* Grigio tipico Yeezy */
-    background-position: center;
-    background-size: cover;
+    background: #f7eee1; /* Stesso colore del fondo */
+    border-top: 1px solid #000;
+    padding: 20px 0;
+    z-index: 100;
 }
 
-/* Info Prodotto */
-.item-info {
+.player-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+#now-playing {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+input[type=range] {
+    width: 100%;
+    -webkit-appearance: none;
+    background: #333;
+    height: 1px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 10px;
+    background: #000;
+}
+.track span{
+    font-size: 1rem;
+}
+.controls {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
-    font-size: 14px;
+    align-items: center;
 }
 
-/* Responsive per Mobile */
+.btns {
+    display: flex;
+    gap: 30px;
+}
+
+.btns button {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Mobile: Stack layout */
 @media (max-width: 600px) {
-    .grid-container {
-        grid-template-columns: 1fr; /* Singola colonna su mobile */
+    .album-section {
+        flex-direction: column;
+        text-align: center;
     }
-    
-    .logo {
-        font-size: 18px;
+    .album-text p {
+        text-align: center;
+    }
+    .btns {
+        gap: 15px;
+    }
+}
+/* Mobile: Stack them but keep them close */
+@media (max-width: 600px) {
+    .album-section {
+        flex-direction: column;
+        gap: 10px; /* Even tighter gap on mobile */
+    }
+    .album-text {
+        text-align: center;
+    }
+    .album-text p {
+        text-align: center;
     }
 }
