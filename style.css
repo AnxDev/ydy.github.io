@@ -282,19 +282,19 @@ input[type=range]::-moz-range-thumb {
 
 /* --- MOBILE PLAYER ADJUSTMENTS --- */
 @media (max-width: 600px) {
-    .player {
-        padding: 15px 0 30px 0; /* Extra bottom padding for mobile home bars */
-    }
-    
-    .player-content {
-        padding: 0 20px;
-    }
-
-    .btns {
-        gap: 20px; /* Slightly tighter buttons on mobile */
+    body {
+        /* Cambia la centratura: non più al centro perfetto, 
+           ma inizia dall'alto con un padding controllato */
+        justify-content: flex-start; 
+        padding-top: 5vh; /* Sposta tutto al 15% dell'altezza dello schermo */
+        gap: 20px;
     }
 
-    #now-playing {
-        font-size: 9px;
+    .top-image {
+        max-width: 250px; /* Ridimensiona l'immagine per mobile */
+    }
+
+    .time-block {
+        min-width: 50px;
     }
 }
