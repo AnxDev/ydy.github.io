@@ -6,7 +6,7 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: monospace;
-    padding: 20px 20px 120px 20px; /* Added 120px bottom padding to clear the player */
+    padding: 20px 20px 140px 40px; /* Added 120px bottom padding to clear the player */
     box-sizing: border-box;
 }
 
@@ -17,8 +17,12 @@ hr {
     margin: 20px auto;
     width: 80%;
     max-width: 1000px;
+    
 }
-
+.countdown{
+    padding-bottom: 5rem;
+    padding-top: 5rem;
+}
 /* --- TYPOGRAPHY --- */
 .title span {
     display: flex;
@@ -34,9 +38,10 @@ hr {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: clamp(10px, 4vw, 20px);
+    gap: clamp(1px, 4vw, 50px);
     text-align: center;
     text-transform: uppercase;
+
 }
 
 .time-block span {
@@ -52,7 +57,7 @@ hr {
     align-items: center;
     justify-content: center;
     gap: 15px; /* Tighter gap as requested */
-    padding: 10px 0;
+    padding-top: 10rem;
     width: 100%;
     max-width: 900px;
 }
