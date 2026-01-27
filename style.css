@@ -1,24 +1,25 @@
 body {
     background-color: #f7eee1;
-    display: grid; /* Added: place-items requires display: grid or flex */
-    place-items: center;
+    display: flex; /* Changed to flex for better vertical stacking of sections */
+    flex-direction: column;
+    align-items: center;
     min-height: 100vh;
     margin: 0;
     font-family: monospace;
-    padding: 20px; /* Added: prevents content from touching screen edges */
+    padding: 20px 20px 120px 20px; /* Added 120px bottom padding to clear the player */
     box-sizing: border-box;
 }
 
 hr {
     border: none;
     height: 2px;
-    background-color: #000000;
-    margin: 15px auto;
-    width: 80%; /* Increased for better mobile visibility */
-    max-width: 1000px; /* Caps the width on desktop */
+    background-color: #000;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 1000px;
 }
 
-/* Fluid Typography using clamp(min, preferred, max) */
+/* --- TYPOGRAPHY --- */
 .title span {
     display: flex;
     font-size: clamp(1.5rem, 8vw, 3rem);
@@ -31,9 +32,9 @@ hr {
 
 .countdown-container {
     display: flex;
-    flex-wrap: wrap; /* Allows blocks to drop to next line if screen is tiny */
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: clamp(10px, 4vw, 20px);
     text-align: center;
     text-transform: uppercase;
 }
@@ -45,53 +46,43 @@ hr {
     letter-spacing: -1px;
 }
 
-.time-block label {
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #666;
-}
-
+/* --- ALBUM SECTION --- */
 .album-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Reduced gap from 40px to 15px for a tighter feel */
-    gap: 15px; 
-    padding: 10px 5%;
+    gap: 15px; /* Tighter gap as requested */
+    padding: 10px 0;
     width: 100%;
-    max-width: 900px; /* Prevents the section from spreading too far on wide screens */
-    margin: 0 auto;   /* Centers the container */
+    max-width: 900px;
 }
 
 .album-cover-side {
     border: 1px solid black;
-    /* Fixed width works better for proximity than a tiny percentage */
-    width: 250px; 
+    width: clamp(150px, 30vw, 250px); /* Scales between 150px and 250px */
     height: auto;
     object-fit: cover;
-    flex-shrink: 0; /* Prevents the image from getting squished */
+    flex-shrink: 0;
 }
 
 .album-text {
-    text-align: left;
-    color: #000000;
-    font-family: monospace;
-    /* Remove 'flex: 1' to keep the text container only as wide as its content */
-    flex: 0 1 auto; 
+    color: #000;
+    flex: 0 1 auto;
 }
 
 .album-text h2 {
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(1.8rem, 5vw, 4rem);
     letter-spacing: 2px;
-    margin: 0; /* Ensures no extra spacing pushes it away */
-    line-height: 1;
+    margin: 0;
+    line-height: 0.9;
 }
 
 .album-text p {
-    font-size: 1.2rem;
-    margin: 5px 0 0 0; /* Small top margin to separate from H2 */
-    text-align: left; /* Aligned with the header for proximity */
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin: 5px 0 0 0;
 }
+
+/* --- TRACKLIST --- */
 .tracklist {
     width: 100%;
     max-width: 600px;
@@ -101,24 +92,25 @@ hr {
 .track {
     display: flex;
     justify-content: space-between;
-    padding: 15px 0;
+    align-items: center;
+    padding: 12px 0;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     cursor: pointer;
-    font-size: 13px;
     transition: opacity 0.2s;
 }
 
-.track:hover {
-    opacity: 0.5;
+.track span {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 
-/* Player Fisso Inferiore */
+/* --- PLAYER (FIXED) --- */
+/* --- PLAYER CONTAINER --- */
 .player {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #f7eee1; /* Stesso colore del fondo */
+    background: #f7eee1; /* Matches body background */
     border-top: 1px solid #000;
     padding: 20px 0;
     z-index: 100;
@@ -135,8 +127,10 @@ hr {
     font-weight: bold;
     margin-bottom: 10px;
     letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
+/* --- CUSTOM RANGE SLIDER --- */
 input[type=range] {
     width: 100%;
     -webkit-appearance: none;
@@ -144,17 +138,27 @@ input[type=range] {
     height: 1px;
     margin-bottom: 15px;
     cursor: pointer;
+    display: block;
 }
 
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    height: 10px;
-    width: 10px;
+    height: 12px;
+    width: 12px;
     background: #000;
+    border-radius: 0; /* Square thumb to match monospace aesthetic */
+    margin-top: -5px; /* Centers thumb on the line */
 }
-.track span{
-    font-size: 1rem;
+
+input[type=range]::-moz-range-thumb {
+    height: 12px;
+    width: 12px;
+    background: #000;
+    border-radius: 0;
+    border: none;
 }
+
+/* --- PLAYER CONTROLS --- */
 .controls {
     display: flex;
     justify-content: space-between;
@@ -174,31 +178,29 @@ input[type=range]::-webkit-slider-thumb {
     font-weight: bold;
     cursor: pointer;
     padding: 0;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
 }
 
-/* Mobile: Stack layout */
-@media (max-width: 600px) {
-    .album-section {
-        flex-direction: column;
-        text-align: center;
-    }
-    .album-text p {
-        text-align: center;
-    }
-    .btns {
-        gap: 15px;
-    }
+.btns button:hover {
+    opacity: 0.5;
 }
-/* Mobile: Stack them but keep them close */
+
+/* --- MOBILE PLAYER ADJUSTMENTS --- */
 @media (max-width: 600px) {
-    .album-section {
-        flex-direction: column;
-        gap: 10px; /* Even tighter gap on mobile */
+    .player {
+        padding: 15px 0 30px 0; /* Extra bottom padding for mobile home bars */
     }
-    .album-text {
-        text-align: center;
+    
+    .player-content {
+        padding: 0 20px;
     }
-    .album-text p {
-        text-align: center;
+
+    .btns {
+        gap: 20px; /* Slightly tighter buttons on mobile */
+    }
+
+    #now-playing {
+        font-size: 9px;
     }
 }
