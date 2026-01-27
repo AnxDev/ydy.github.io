@@ -12,16 +12,31 @@ body {
 
 hr {
     border: none;
-    height: 2px;
+    height: 1px;
     background-color: #000;
     margin: 20px auto;
     width: 80%;
     max-width: 1000px;
     
 }
-.countdown{
-    padding-bottom: 5rem;
-    padding-top: 5rem;
+.album-info-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px; /* Allineato alla larghezza della album-section */
+    margin: 0 auto 10px auto;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: black;
+    text-transform: uppercase;
+}
+
+/* Assicurati che il container non stringa troppo il contenuto */
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 /* --- TYPOGRAPHY --- */
 .title span {
@@ -34,14 +49,86 @@ hr {
     font-size: clamp(1rem, 4vw, 1.5rem);
 }
 
-.countdown-container {
+/* RESET E BASE */
+html, body {
+    height: 100%; /* Indispensabile per la centratura verticale */
+    margin: 0;
+    background-color: #f7eee1;
+    font-family: monospace;
+}
+
+body {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: clamp(1px, 4vw, 50px);
+    flex-direction: column;   /* Allinea titolo e countdown */
+    justify-content: center;  /* Centra verticalmente rispetto ai 100vh */
+    align-items: center;      /* Centra orizzontalmente */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* TITOLO (Opzionale, sopra il countdown) */
+.title {
+    margin-bottom: 2rem;
     text-align: center;
     text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+}
 
+/* IL COUNTDOWN - IL CUORE DELLA PAGINA */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+}
+
+/* I Numeri Giganti */
+.time-block span {
+    display: block;
+    font-size: clamp(3rem, 15vw, 8rem); /* Scala in base allo schermo */
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -4px;
+    color: #000;
+}
+.top-image {
+    width: clamp(150px, 20vw, 400px); /* Grandezza responsiva */
+    height: auto;
+    display: block;
+    /* Opzionale: aggiungi un bordo o ombra se è una copertina */
+    border: 1px solid #000; 
+}
+/* Le Etichette (Days, Hours, etc.) */
+.time-block label {
+    margin-top: 10px;
+    font-size: clamp(10px, 2vw, 14px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #555;
+}
+
+/* RESPONSIVE PER MOBILE */
+@media (max-width: 600px) {
+    .countdown-container {
+        gap: 20px;
+    }
+    
+    .time-block {
+        min-width: 70px;
+    }
+
+    .time-block span {
+        letter-spacing: -1px;
+    }
 }
 
 .time-block span {
@@ -57,9 +144,10 @@ hr {
     align-items: center;
     justify-content: center;
     gap: 15px; /* Tighter gap as requested */
-    padding-top: 10rem;
+    padding: 10px 0;
     width: 100%;
     max-width: 900px;
+    margin-top: 0px;
 }
 
 .album-cover-side {

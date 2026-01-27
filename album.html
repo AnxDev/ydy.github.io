@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YDY</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="album-info-header">
+        <span>YDY</span>
+        <span>14.02.2026</span>
+    </div>
+<div class="album-section">
+    
+    <img src="cover.jpg" alt="Album Cover" class="album-cover-side">
+
+    <div class="album-text">
+        <h2>JESUS LORD III</h2>
+        <p class="description">YDY</p>
+        
+    </div>
+</div>
+<hr>
+<div class="tracklist">
+            <div class="track" onclick="selectTrack('01 TRACK 1', '00:00')">
+                <span>01 TRACK 1</span>
+                <span>00:00</span>
+            </div>
+            <div class="track" onclick="selectTrack('02 TRACK 2', '00:00')">
+                <span>02 TRACK 2</span>
+                <span>00:00</span>
+            </div>
+            <div class="track" onclick="selectTrack('01 TRACK 1', '00:00')">
+                <span>03 TRACK 3</span>
+                <span>00:00</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="player">
+        <div class="player-content">
+            <div id="now-playing">NESSUNA TRACCIA SELEZIONATA</div>
+            <input type="range" id="progress" value="0">
+            
+            <div class="controls">
+                <div class="btns">
+                    <button onclick="prev()">PREV</button>
+                    <button id="playBtn" onclick="togglePlay()">PLAY</button>
+                    <button onclick="next()">NEXT</button>
+                </div>
+                <div class="time" id="track-time">0:00 / 0:00</div>
+            </div>
+        </div>
+    </div>
+<!-- Lightbox hidden images -->
+
+
+
+</body>
+</html>
+
+
