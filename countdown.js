@@ -1,4 +1,4 @@
-// Set your target date here
+
 const lpDate = new Date("Feb 14, 2026 00:00:00").getTime();
 
 const lpCountdown = setInterval(() => {
