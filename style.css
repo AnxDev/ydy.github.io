@@ -13,7 +13,12 @@ body {
     font-weight: 500;
     
 }
-
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Blocca lo scroll laterale */
+    margin: 0;
+    padding: 0;
+}
 hr {
     border: none;
     height: 1px;
@@ -27,7 +32,7 @@ hr {
     display: flex;
     justify-content: space-between;
     align-items: flex-end; /* Allinea il testo alla base */
-    width: 100%;
+    width: 95%;
     max-width: 900px;
     margin: 0 auto 10px auto;
     /* Scala in base alla larghezza dello schermo */
@@ -174,20 +179,35 @@ html, body {
 }
 
 .tracklist {
-    width: 100%;
-    max-width: 600px;
-    margin-top: 20px;
-    margin-bottom: 100px; /* Spazio per il player fisso */
+    width: 95%;
+    max-width: 100%; /* Non deve mai superare il contenitore */
+    padding: 0;
+    
 }
 
 .track {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
+    width: 100%;
+    padding: 10px 0;
     border-bottom: 1px solid rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: opacity 0.2s;
+    gap: 10px; /* Spazio minimo tra titolo e tempo */
+}
+
+.track-name {
+    flex: 1;
+    min-width: 0; /* Permette il taglio del testo */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(11px, 2.5vw, 14px);
+}
+
+.track-time {
+    flex-shrink: 0;
+    font-size: 11px;
+    opacity: 0.6;
 }
 
 .track span {
@@ -201,24 +221,35 @@ html, body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: #f7eee1; /* Matches body background */
+    /* Rimuoviamo qualsiasi margine o padding che possa eccedere il 100% */
+    background: #f7eee1; 
     border-top: 1px solid #000;
-    padding: 20px 0;
-    z-index: 100;
+    padding: 15px 0 30px 0; /* Padding verticale */
+    z-index: 1000;
+    box-sizing: border-box;
 }
 
 .player-content {
+    /* Usiamo una larghezza percentuale con un limite massimo */
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 20px; /* Padding laterale interno per non far toccare i bordi */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 #now-playing {
     font-size: 10px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    /* Evita che titoli lunghi rompano il layout */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 input[type=range] {
@@ -363,11 +394,12 @@ input[type=range]::-moz-range-thumb {
     /* 3 colonne su desktop, 2 su tablet, 1 su mobile */
     grid-template-columns: repeat(3, 1fr); 
     width: 100%;
-    max-width: 1200px;
-    margin: 60px auto;
-    /* Rimosso border-top e border-left */
-    gap: 40px; /* Aumentato lo spazio tra i prodotti */
-    padding: 20px;
+    /* Fondamentale: non superare mai la larghezza della navbar */
+    max-width: 900px; 
+    margin: 40px auto;
+    gap: 20px; /* Spazio ridotto per evitare l'effetto "zoom out" */
+    padding: 0 15px; /* Padding laterale di sicurezza */
+    box-sizing: border-box;
 }
 
 .merch-item {
