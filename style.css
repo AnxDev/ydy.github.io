@@ -31,14 +31,14 @@ hr {
     text-transform: uppercase;
 }
 
-/* Assicurati che il container non stringa troppo il contenuto */
+
 .container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-/* --- TYPOGRAPHY --- */
+
 .title span {
     display: flex;
     font-size: clamp(1.5rem, 8vw, 3rem);
@@ -49,9 +49,9 @@ hr {
     font-size: clamp(1rem, 4vw, 1.5rem);
 }
 
-/* RESET E BASE */
+
 html, body {
-    height: 100%; /* Indispensabile per la centratura verticale */
+    height: 100%;
     margin: 0;
     background-color: #f7eee1;
     font-family: monospace;
@@ -59,14 +59,14 @@ html, body {
 
 body {
     display: flex;
-    flex-direction: column;   /* Allinea titolo e countdown */
-    justify-content: center;  /* Centra verticalmente rispetto ai 100vh */
-    align-items: center;      /* Centra orizzontalmente */
+    flex-direction: column;
+    justify-content: center;   
+    align-items: center;      orizzontalmente 
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* TITOLO (Opzionale, sopra il countdown) */
+
 .title {
     margin-bottom: 2rem;
     text-align: center;
@@ -75,7 +75,7 @@ body {
     font-size: clamp(1rem, 4vw, 1.5rem);
 }
 
-/* IL COUNTDOWN - IL CUORE DELLA PAGINA */
+
 .countdown-container {
     display: flex;
     justify-content: center;
@@ -91,7 +91,7 @@ body {
     min-width: 100px;
 }
 
-/* I Numeri Giganti */
+
 .time-block span {
     display: block;
     font-size: clamp(3rem, 15vw, 8rem); /* Scala in base allo schermo */
@@ -116,7 +116,7 @@ body {
     color: #555;
 }
 
-/* RESPONSIVE PER MOBILE */
+
 @media (max-width: 600px) {
     .countdown-container {
         gap: 20px;
@@ -138,7 +138,6 @@ body {
     letter-spacing: -1px;
 }
 
-/* --- ALBUM SECTION --- */
 .album-section {
     display: flex;
     align-items: center;
@@ -176,7 +175,6 @@ body {
     margin: 5px 0 0 0;
 }
 
-/* --- TRACKLIST --- */
 .tracklist {
     width: 100%;
     max-width: 600px;
@@ -197,8 +195,7 @@ body {
     font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 
-/* --- PLAYER (FIXED) --- */
-/* --- PLAYER CONTAINER --- */
+
 .player {
     position: fixed;
     bottom: 0;
@@ -224,7 +221,6 @@ body {
     text-transform: uppercase;
 }
 
-/* --- CUSTOM RANGE SLIDER --- */
 input[type=range] {
     width: 100%;
     -webkit-appearance: none;
@@ -252,7 +248,7 @@ input[type=range]::-moz-range-thumb {
     border: none;
 }
 
-/* --- PLAYER CONTROLS --- */
+
 .controls {
     display: flex;
     justify-content: space-between;
@@ -283,8 +279,7 @@ input[type=range]::-moz-range-thumb {
 /* --- MOBILE PLAYER ADJUSTMENTS --- */
 @media (max-width: 600px) {
     body {
-        /* Cambia la centratura: non più al centro perfetto, 
-           ma inizia dall'alto con un padding controllato */
+      
         justify-content: flex-start; 
         padding-top: 5vh; /* Sposta tutto al 15% dell'altezza dello schermo */
         gap: 20px;
