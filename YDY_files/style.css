@@ -1,0 +1,454 @@
+body {
+    background-color: #f7eee1;
+    display: flex; /* Changed to flex for better vertical stacking of sections */
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    
+    /* Added 120px bottom padding to clear the player */
+    box-sizing: border-box;
+    font-weight: 500;
+    
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #000;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 1000px;
+    
+}
+.album-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Allinea il testo alla base */
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 10px auto;
+    /* Scala in base alla larghezza dello schermo */
+    font-size: clamp(10px, 1.5vw, 14px); 
+    letter-spacing: 0.15em;
+    padding: 0 5px;
+}
+
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title span {
+    display: flex;
+    font-size: clamp(1.5rem, 8vw, 3rem);
+}
+
+.sub-title span {
+    display: flex;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #f7eee1;
+    font-family: monospace;
+}
+
+
+
+
+.title {
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+}
+
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+}
+
+
+.time-block span {
+    display: block;
+    font-size: clamp(3rem, 15vw, 8rem); /* Scala in base allo schermo */
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -4px;
+    color: #000;
+}
+.top-image {
+    width: clamp(150px, 20vw, 400px); /* Grandezza responsiva */
+    height: auto;
+    display: block;
+    /* Opzionale: aggiungi un bordo o ombra se è una copertina */
+    border: 1px solid #000; 
+}
+/* Le Etichette (Days, Hours, etc.) */
+.time-block label {
+    margin-top: 10px;
+    font-size: clamp(10px, 2vw, 14px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #555;
+}
+
+
+@media (max-width: 600px) {
+    .countdown-container {
+        gap: 20px;
+    }
+    
+    .time-block {
+        min-width: 70px;
+    }
+
+    .time-block span {
+        letter-spacing: -1px;
+    }
+}
+
+.time-block span {
+    display: block;
+    font-size: clamp(1.5rem, 6vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.album-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Tighter gap as requested */
+    padding: 10px 0;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 0px;
+}
+
+.album-cover-side {
+    border: 1px solid black;
+    width: clamp(150px, 30vw, 250px); /* Scales between 150px and 250px */
+    height: auto;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.album-text {
+    color: #000;
+    flex: 0 1 auto;
+}
+
+.album-text h2 {
+    font-size: clamp(1.8rem, 5vw, 4rem);
+    letter-spacing: 2px;
+    margin: 0;
+    line-height: 0.9;
+    text-align: center;
+}
+
+.album-text p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin: 5px 0 0 0;
+}
+
+.tracklist {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    margin-bottom: 100px; /* Spazio per il player fisso */
+}
+
+.track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.track span {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-family: monospace;
+}
+
+
+.player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #f7eee1; /* Matches body background */
+    border-top: 1px solid #000;
+    padding: 20px 0;
+    z-index: 100;
+}
+
+.player-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+#now-playing {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+input[type=range] {
+    width: 100%;
+    -webkit-appearance: none;
+    background: #333;
+    height: 1px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    display: block;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    background: #000;
+    border-radius: 0; /* Square thumb to match monospace aesthetic */
+    margin-top: -5px; /* Centers thumb on the line */
+}
+
+input[type=range]::-moz-range-thumb {
+    height: 12px;
+    width: 12px;
+    background: #000;
+    border-radius: 0;
+    border: none;
+}
+
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btns {
+    display: flex;
+    gap: 30px;
+}
+
+.btns button {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+}
+
+.about-us{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    color: #000;
+}
+
+
+.btns button:hover {
+    opacity: 0.5;
+}
+.main-nav {
+    width: 100%;
+    background-color: black;
+    padding: 15px 13px; /* Aggiunto padding laterale */
+    display: flex;
+    justify-content: space-between; /* Spinge gli elementi ai lati */
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 30px;
+
+}
+
+.nav-links {
+    display: flex;
+    /* Usa clamp per lo spazio tra i link: minimo 10px, fluido 3vw, massimo 40px */
+    gap: clamp(10px, 3vw, 40px); 
+    padding: 0 15px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap
+    
+}
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    /* Font fluido: non scende mai sotto i 9px e non sale sopra i 12px */
+    font-size: clamp(9px, 2vw, 11px);
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap; /* Mantiene "PRE-ORDER" su una riga sola */
+    transition: opacity 0.2s;
+}
+
+.nav-links a:hover {
+    opacity: 0.5;
+}
+.social-links {
+    display: flex;
+    gap: 13px;
+    flex: 1;
+    justify-content: flex-end; /* Icone alla fine */
+}
+
+.social-links a {
+    color: white;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.social-links svg {
+    width: 18px; /* Dimensione icone piccola e pulita */
+    height: 18px;
+}
+
+.social-links a:hover {
+    opacity: 0.5;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 600px) {
+    .social-links {
+        display: none; /* Nasconde completamente il blocco social */
+    }
+}
+
+
+/* --- GRIGLIA MERCH AGGIORNATA --- */
+.merch-grid {
+    display: grid;
+    /* 3 colonne su desktop, 2 su tablet, 1 su mobile */
+    grid-template-columns: repeat(3, 1fr); 
+    width: 100%;
+    max-width: 1200px;
+    margin: 60px auto;
+    /* Rimosso border-top e border-left */
+    gap: 40px; /* Aumentato lo spazio tra i prodotti */
+    padding: 20px;
+}
+
+.merch-item {
+    /* Rimosso border-right e border-bottom */
+    display: flex;
+    flex-direction: column;
+    background: transparent; /* Pulito, senza sfondo scuro */
+    cursor: pointer;
+    overflow: hidden; /* Necessario per contenere lo zoom dell'immagine */
+}
+
+.merch-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden; /* Taglia l'immagine quando si ingrandisce */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Un fondo chiarissimo per dare profondità */
+}
+
+.merch-image img {
+    width: 90%;
+    height: auto;
+    object-fit: contain;
+    /* Transizione fluida per lo zoom */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Effetto Zoom al passaggio del mouse */
+.merch-item:hover .merch-image img {
+    transform: scale(1.1); /* Leggero zoom del 10% */
+}
+
+.merch-info {
+    padding: 15px 5px;
+    display: flex;
+    justify-content: space-between;
+    font-size: clamp(10px, 1.2vw, 12px);
+    font-weight: bold;
+    letter-spacing: 1px;
+    /* Il testo non zooma, rimane fermo e pulito */
+}
+
+/* --- RESPONSIVITÀ --- */
+@media (max-width: 900px) {
+    .merch-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .merch-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+@media (max-width: 600px) {
+    body {
+      
+        justify-content: flex-start; 
+        
+        gap: 20px;
+    }
+
+    .top-image {
+        max-width: 250px; /* Ridimensiona l'immagine per mobile */
+    }
+
+    .time-block {
+        min-width: 50px;
+    }
+    .main-nav {
+        padding: 10px 0;
+    }
+    
+    .nav-links {
+        gap: 12px; /* Riduce il gap per far stare tutto su una riga il più possibile */
+    }
+
+    .nav-links a {
+        letter-spacing: 1px; /* Stringe le lettere per risparmiare spazio */
+    }
+}
