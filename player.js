@@ -31,12 +31,30 @@ const timeDisplay = document.getElementById('track-time');
 function loadTrack(index) {
     currentTrackIndex = index;
     const trackName = playlist[index];
-    
     nowPlaying.innerText = trackName.toUpperCase();
     audio.src = "audio/" + trackName + ".wav"; 
     
-    progress.value = 0;
-    timeDisplay.innerText = "0:00 / 0:00";
+    // --- NUOVO: Evidenzia la traccia ---
+    // Rimuovi la classe 'active' da tutte le tracce
+    document.querySelectorAll('.track').forEach(t => t.classList.remove('active-track'));
+    // Aggiungila a quella corrente
+    const allTracks = document.querySelectorAll('.track');
+    if(allTracks[index]) allTracks[index].classList.add('active-track');
+    if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+        title: playlist[index],
+        artist: 'YDY',
+        album: 'JESUS LORD III',
+        artwork: [
+            { src: 'cover.jpg', sizes: '512x512', type: 'image/jpg' }
+        ]
+    });
+
+    navigator.mediaSession.setActionHandler('play', playTrack);
+    navigator.mediaSession.setActionHandler('pause', pauseTrack);
+    navigator.mediaSession.setActionHandler('previoustrack', prev);
+    navigator.mediaSession.setActionHandler('nexttrack', next);
+}
 }
 
 // Chiamata dall'HTML: onclick="selectTrack('01 LOVE ME')"

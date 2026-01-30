@@ -391,7 +391,18 @@ input[type=range]::-moz-range-thumb {
 .track {
     cursor: pointer;
 }
-
+.track:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.active-track {
+    background-color: rgba(0, 0, 0, 0.05); /* Grigio chiarissimo */
+    font-weight: bold;
+}
+.active-track span:first-child::before {
+    content: "● "; /* Un piccolo pallino davanti alla traccia che suona */
+    font-size: 8px;
+    vertical-align: middle;
+}
 /* --- GRIGLIA MERCH AGGIORNATA --- */
 .merch-grid {
     display: grid;
