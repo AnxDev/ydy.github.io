@@ -388,7 +388,9 @@ input[type=range]::-moz-range-thumb {
         display: none; /* Nasconde completamente il blocco social */
     }
 }
-
+.track {
+    cursor: pointer;
+}
 
 /* --- GRIGLIA MERCH AGGIORNATA --- */
 .merch-grid {
@@ -398,7 +400,7 @@ input[type=range]::-moz-range-thumb {
     width: 100%;
     /* Fondamentale: non superare mai la larghezza della navbar */
     max-width: 900px; 
-    margin: 10px auto;
+    margin: 10px auto; 
     gap: 20px; /* Spazio ridotto per evitare l'effetto "zoom out" */
     padding: 0 15px; /* Padding laterale di sicurezza */
     box-sizing: border-box;
